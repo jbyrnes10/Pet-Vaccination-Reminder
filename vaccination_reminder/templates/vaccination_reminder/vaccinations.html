@@ -1,0 +1,23 @@
+{% extends 'vaccination_reminder/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+Vaccinations
+{% endblock %}
+
+{% block body_block %}
+    <h1>Vaccinations</h1>
+    {% if results %}
+        <ul>
+            {% for vac in vaccinations %}
+                <li>
+                    <ul>
+                        <li></li>
+                    </ul>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        No vaccinations available.
+    {% endif %}
+{% endblock %}

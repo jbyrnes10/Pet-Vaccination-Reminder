@@ -1,0 +1,21 @@
+{% extends 'vaccination_reminder/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+Pet History
+{% endblock %}
+
+{% block body_block %}
+ {% if user.is_authenticated %}
+    <h1>Vaccination History for </h1>
+    <ul>
+    {% for vacs in vaccinations_list %}
+        <li>
+            Date Due: {{ vacs.date_due }}
+            Date Vaccinated: {{ vacs.date_vaccinated }}
+        </li>
+    {% endfor %}
+    </ul>
+{% endif %}
+
+{% endblock %}

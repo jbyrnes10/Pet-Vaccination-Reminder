@@ -1,0 +1,33 @@
+{% extends 'vaccination_reminder/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+Pets
+{% endblock %}
+
+{% block body_block %}
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
+<script>
+$(document).ready(function() {
+    $('.datepicker').datepicker();
+});
+</script>
+ {% if user.is_authenticated %}
+    <h3>Add a pet to this account: {{ user.username }}</h3>
+{% endif %}
+    <form id="pets_form" method="post" action="{% url 'add_pet' %}">
+        {% csrf_token %}
+        {% for hidden in form.hidden_fields %}
+            {{ hidden }}
+        {% endfor %}
+        {% for field in form.visible_fields %}
+            {{ field.errors }}
+            {{ field.help_text }}
+            {{ field }}
+        <br />
+        {% endfor %}
+        <input type="submit" name="submit" value="Add Pet" />
+    </form>
+{% endblock %}

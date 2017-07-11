@@ -1,0 +1,21 @@
+{% extends 'vaccination_reminder/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+Pets
+{% endblock %}
+
+{% block body_block %}
+ {% if user.is_authenticated %}
+    <h1>Pets for {{ user.username }}</h1>
+    <ul>
+    {% for pet in pets_list %}
+        <li>
+            <a href="{% url 'pet_history' pet.id %}">{{ pet.pet_name }}</a>
+            {{ pet.vaccinations }}
+        </li>
+    {% endfor %}
+    </ul>
+{% endif %}
+
+{% endblock %}
