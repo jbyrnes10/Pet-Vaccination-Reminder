@@ -6,16 +6,18 @@ Pet History
 {% endblock %}
 
 {% block body_block %}
- {% if user.is_authenticated %}
-    <h1>Vaccination History for </h1>
+    <h3>Vaccination History for {{ pet.pet_name }} </h3>
+
     <ul>
-    {% for vacs in vaccinations_list %}
+    {% for vacs in vaccinations_history %}
         <li>
-            Date Due: {{ vacs.date_due }}
-            Date Vaccinated: {{ vacs.date_vaccinated }}
+            {{ vacs.vaccinations.vaccination_name }}
+            <ul>
+                <li>Date Vaccinated: {{ vacs.date_vaccinated }}</li>
+                <li>Date Due: {{ vacs.date_due }}</li>
+            </ul>
         </li>
     {% endfor %}
     </ul>
-{% endif %}
-
+    <a href="{% url 'add_vaccine' pet.id %}">Add Vaccine</a>
 {% endblock %}

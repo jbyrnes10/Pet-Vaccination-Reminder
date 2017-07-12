@@ -2,7 +2,7 @@
 {% load staticfiles %}
 
 {% block title_block %}
-Add Pet
+Add Vaccine
 {% endblock %}
 
 {% block body_block %}
@@ -14,10 +14,8 @@ $(document).ready(function() {
     $('.datepicker').datepicker();
 });
 </script>
- {% if user.is_authenticated %}
-    <h3>Add a pet to this account: {{ user.username }}</h3>
-{% endif %}
-    <form id="pets_form" method="post" action="{% url 'add_pet' %}">
+    <h3>Add a vaccine for {{ pet.pet_name }}</h3>
+    <form id="vaccine_form" method="post" action=".">
         {% csrf_token %}
         {% for hidden in form.hidden_fields %}
             {{ hidden }}
@@ -28,6 +26,6 @@ $(document).ready(function() {
             {{ field }}
         <br />
         {% endfor %}
-        <input type="submit" name="submit" value="Add Pet" />
+        <input type="submit" name="submit" value="Add Vaccine" />
     </form>
 {% endblock %}

@@ -2,22 +2,34 @@
 {% load staticfiles %}
 
 {% block title_block %}
-Vaccinations
+Core Vaccines
 {% endblock %}
 
 {% block body_block %}
-    <h1>Vaccinations</h1>
-    {% if results %}
+    <h3>Dog Vaccines</h3>
         <ul>
-            {% for vac in vaccinations %}
+            {% for vac in vaccination_list %}
+                {% if vac.species == 0 or vac.species == 2 %}
                 <li>
+                    {{ vac.vaccination_name }}
                     <ul>
-                        <li></li>
+                        <li>{{ vac.description }}</li>
                     </ul>
                 </li>
+                {% endif %}
             {% endfor %}
         </ul>
-    {% else %}
-        No vaccinations available.
-    {% endif %}
+    <h3>Cat Vaccines</h3>
+        <ul>
+            {% for vac in vaccination_list %}
+                {% if vac.species == 1 or vac.species == 2 %}
+                <li>
+                    {{ vac.vaccination_name }}
+                    <ul>
+                        <li>{{ vac.description }}</li>
+                    </ul>
+                </li>
+                {% endif %}
+            {% endfor %}
+        </ul>
 {% endblock %}

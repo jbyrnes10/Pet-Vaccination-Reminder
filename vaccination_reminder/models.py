@@ -17,7 +17,7 @@ class Vaccinations(models.Model):
     description = models.CharField(max_length=500)
 
     def __str__(self):
-        return self
+        return str(self.vaccination_name)
 
 class Pets(models.Model):
     pet_name = models.CharField(max_length=20, null=False)
@@ -34,7 +34,7 @@ class Pets(models.Model):
         super(Pets, self).save(*args, **kwargs)
 
     def __str__(self):
-        return self
+        return str(self.owner)
 
 class VaccinationHistory(models.Model):
     pets = models.ForeignKey(Pets, related_name='pets')

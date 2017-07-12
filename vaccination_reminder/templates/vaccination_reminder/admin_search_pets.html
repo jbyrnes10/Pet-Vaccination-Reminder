@@ -1,0 +1,21 @@
+{% extends 'vaccination_reminder/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+Admin Search Results
+{% endblock %}
+
+{% block body_block %}
+    {% if results %}
+    <h3>Search Results</h3>
+    {% for pet in results %}
+        <ul>
+            <li>
+                <a href="{% url 'pet_history' pet.id %}">{{ pet.pet_name }}</a>
+            </li>
+        </ul>
+    {% endfor %}
+    {% else %}
+        No pets assigned to this user.
+    {% endif %}
+{% endblock %}

@@ -30,7 +30,7 @@
                 <li><a href="{% url 'registration_register' %}">Sign Up</a></li>
             {% endif %}
             {% if user.is_authenticated %}
-                <li><a href="{% url 'add_pet' %}">Add Pet</a></li>
+                <li><a href="{% url 'pets' %}">Pets</a></li>
             {% endif %}
                 <li><a href="{% url 'vaccinations' %}">Vaccinations</a></li>
                 <li><a href="{% url 'admin' %}">Log in as administrator</a></li>

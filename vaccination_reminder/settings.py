@@ -11,11 +11,6 @@ STATIC_DIR = os.path.join(PROJECT_DIR, 'static')
 
 MEDIA_DIR = os.path.join(PROJECT_DIR, 'media')
 
-print("BASE_DIR: " + BASE_DIR)
-print("TEMPLATE_DIR: " + TEMPLATE_DIR)
-print("STATIC_DIR: " + STATIC_DIR)
-print("MEDIA_DIR: " + MEDIA_DIR)
-
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '%hy@zm0z6s^spo)fm7+5j_ixfleb#)(cnp%pr$*$2ggd^!vx&0'
 
