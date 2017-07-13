@@ -83,15 +83,6 @@ def populate():
                     vacs["description"])
 
 def add_vaccine(vaccination_name, species, first_shot_age_months, second_shot_age_months, third_shot_age_months, fourth_shot_age_months, vaccination_frequency_years, description):
-    print(vaccination_name)
-    print(species)
-    print(first_shot_age_months)
-    print(second_shot_age_months)
-    print(third_shot_age_months)
-    print(fourth_shot_age_months)
-    print(vaccination_frequency_years)
-    print(description)
-
     v = Vaccinations.objects.get_or_create(vaccination_name=vaccination_name, species=species, first_shot_age_months=first_shot_age_months, second_shot_age_months=second_shot_age_months,
                                            third_shot_age_months=third_shot_age_months, fourth_shot_age_months=fourth_shot_age_months, vaccination_frequency_years=vaccination_frequency_years, description=description)[0]
     v.save()

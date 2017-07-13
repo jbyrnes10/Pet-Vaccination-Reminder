@@ -75,6 +75,16 @@ LOGIN_REDIRECT_URL = '/pets/'
 
 LOGIN_URL = '/accounts/login/'
 
+#EMAIL FUNCTIONALITY
+EMAIL_HOST = 'smtp.sendgrid.net'
+
+EMAIL_PORT = 587
+
+EMAIL_HOST_USER = ''
+
+EMAIL_HOST_PASSWORD = ''
+
+EMAIL_USE_TLS = True
 
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases

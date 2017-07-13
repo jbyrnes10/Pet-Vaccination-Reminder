@@ -5,6 +5,7 @@ from django.db.models import Q
 from models import Vaccinations, Pets, VaccinationHistory
 from datetime import datetime
 from vaccination_reminder.forms import PetsForm, AdminForm, VaccineForm
+from django.core.mail import send_mail
 
 def index(request):
     context_dict = {}
@@ -43,6 +44,8 @@ def add_vaccine(request, pet_id):
             vaccine = form.save(commit=False)
             vaccine.pets = pet
             vaccine.save()
+            send_mail('New vaccine for your account', 'A new vaccine was added for ' + pet.pet_name + ' on ' + str(vaccine.date_vaccinated) + '.',
+                      'noreply@vetreminder.com', [request.user.email])
             return pet_history(request, pet_id)
 
         else:
