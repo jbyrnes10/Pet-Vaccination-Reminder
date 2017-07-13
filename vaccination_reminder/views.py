@@ -38,25 +38,23 @@ def add_vaccine(request, pet_id):
     form.vaccines.queryset = Vaccinations.objects.filter(species=pet.species) | Vaccinations.objects.filter(species=2)
 
     if request.method == 'POST':
-        form = VaccineForm(request.POST)
-
+        form = VaccineForm(pet_id, data=request.POST)
         if form.is_valid():
-
-            vaccine = form.save(commit=True)
-            return pet_history(request)
+            vaccine = form.save(commit=False)
+            vaccine.pets = pet
+            vaccine.save()
+            return pet_history(request, pet_id)
 
         else:
             print(form.errors)
 
     return render(request, 'vaccination_reminder/add_vaccine.html', {'form': form, 'pet': pet})
 
-
 def pet_history(request, pet_id):
     pet = Pets.objects.get(id=pet_id)
     vaccinations_history = VaccinationHistory.objects.filter(pets=pet_id)
     vaccinations_list = Vaccinations.objects.filter(species=pet.species) | Vaccinations.objects.filter(species=2)
-    #vaccination_list = VaccinationHistory.objects.filter(pets_list)
-    #'vaccination_list': vaccination_list
+
     context_dict = {'vaccinations_list': vaccinations_list, 'vaccinations_history': vaccinations_history, 'pet': pet}
     return render(request, 'vaccination_reminder/pet_history.html', context=context_dict)
 

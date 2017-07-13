@@ -15,7 +15,7 @@ $(document).ready(function() {
 });
 </script>
     <h3>Add a vaccine for {{ pet.pet_name }}</h3>
-    <form id="vaccine_form" method="post" action=".">
+    <form id="vaccine_form" method="post" action="{% url 'add_vaccine' pet.id %}">
         {% csrf_token %}
         {% for hidden in form.hidden_fields %}
             {{ hidden }}

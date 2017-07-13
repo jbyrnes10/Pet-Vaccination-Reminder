@@ -25,19 +25,18 @@ class PetsForm(forms.ModelForm):
 
 class VaccineForm(forms.ModelForm):
     vaccines = Vaccinations.objects.all()
-    vaccine_name = forms.ModelChoiceField(queryset=vaccines, required=True, help_text="Vaccine")
+    vaccinations = forms.ModelChoiceField(queryset=vaccines, required=True, help_text="Vaccine")
     date_vaccinated = forms.DateField(required=True, help_text="Date Vaccinated",
                                 widget=forms.TextInput(attrs={'class': 'datepicker'}))
 
     class Meta:
         model = VaccinationHistory
-        fields = ('vaccine_name', 'date_vaccinated')
+        fields = ('vaccinations', 'date_vaccinated')
 
     def __init__(self, pet_id, *args, **kwargs):
         super(VaccineForm, self).__init__(**kwargs)
         pet = Pets.objects.get(id=pet_id)
-
-        self.fields['vaccine_name'].queryset = Vaccinations.objects.filter(species=pet.species) | Vaccinations.objects.filter(species=2)
+        self.fields['vaccinations'].queryset = Vaccinations.objects.filter(species=pet.species) | Vaccinations.objects.filter(species=2)
 
 
 class AdminForm(forms.ModelForm):

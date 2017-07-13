@@ -37,10 +37,18 @@ class Pets(models.Model):
         return str(self.owner)
 
 class VaccinationHistory(models.Model):
-    pets = models.ForeignKey(Pets, related_name='pets')
+    pets = models.ForeignKey(Pets)
     vaccinations = models.ForeignKey(Vaccinations, related_name='vaccinations')
     date_vaccinated = models.DateField(null=False)
     date_due = models.DateField()
+
+    def save(self, *args, **kwargs):
+        from datetime import timedelta, datetime
+        delta = timedelta(days=1095)
+
+        if not self.id:
+            self.date_due = self.date_vaccinated + delta
+            super(VaccinationHistory, self).save(*args, **kwargs)
 
     def __str__(self):
         return self
